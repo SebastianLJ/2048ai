@@ -33,7 +33,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage myStage) throws Exception{
+    public void start(Stage myStage) throws Exception {
         myStage.setTitle("Game 2048");
 
         FlowPane rootNode = new FlowPane();
