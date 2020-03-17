@@ -2,32 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74376c4d-788c-4465-ba6a-b6e1e3d9d436" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ant.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/2048_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/description.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/2048/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Cell.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Game.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ai/Action.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzherdev/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mzherdev/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ai/AILauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/AILauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -99,21 +88,58 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583837998075</updated>
-      <workItem from="1583837999510" duration="69000" />
+      <workItem from="1583837999510" duration="286000" />
+      <workItem from="1584436362359" duration="932000" />
     </task>
+    <task id="LOCAL-00001" summary="Revert &quot;&quot;Optimized imports&quot;&quot;&#10;&#10;This reverts commit 9717a3fe2b9bc0a4bdc5af215567dc8c0ec4f89a.">
+      <created>1583838119503</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583838119503</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Revert &quot;&quot;Optimized imports&quot;&quot;&#10;&#10;This reverts commit 9717a3fe2b9bc0a4bdc5af215567dc8c0ec4f89a." />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;&quot;Optimized imports&quot;&quot;&#10;&#10;This reverts commit 9717a3fe2b9bc0a4bdc5af215567dc8c0ec4f89a." />
   </component>
   <component name="WindowStateProjectService">
     <state x="569" y="357" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1583838016133">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="569" y="357" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1440.900@0.0.1440.900" timestamp="1583838016133" />
+    <state x="297" y="27" key="CommitChangelistDialog2" timestamp="1583838119369">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="297" y="27" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1583838119369" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1583928091649">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583928091649" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1583928091648">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583928091648" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1583928091648">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583928091648" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1583928091649">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583928091649" />
     <state x="208" y="31" key="SettingsEditor" timestamp="1583838068982">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="208" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1583838068982" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1583838121068">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1583838121068" />
   </component>
 </project>
