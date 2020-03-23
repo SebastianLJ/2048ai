@@ -29,7 +29,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage myStage) throws Exception {
+    public void start(Stage myStage) {
 
         myStage.setTitle("Game 2048");
 
@@ -132,7 +132,7 @@ public class Main extends Application {
         }.start();
 
         new Thread(() -> {
-            while (true) {
+            while (!game.win || !game.lose) {
                 Platform.runLater(() -> calculateAndMakeNextMove(game, ai));
                 try {
                     Thread.sleep(80);
@@ -151,7 +151,7 @@ public class Main extends Application {
 
         String nextMove = ai.getNextMove(game);
 
-        if (!game.canMove() || (!game.win && !game.canMove())) {
+        if (!game.win && !game.canMove()) {
             game.lose = true;
         }
 
@@ -170,7 +170,6 @@ public class Main extends Application {
                     moved[0] = game.up();
                     break;
             }
-            System.out.println("moved");
             if (moved[0]) {
                 game.spawnCell();
             }

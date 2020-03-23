@@ -35,7 +35,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
 
-    public void resetGame() {
+    private void resetGame() {
         score = 0;
         win = false;
         lose = false;
@@ -87,7 +87,7 @@ public class Game extends javafx.scene.canvas.Canvas {
         return cells[x + y * 4];
     }
 
-    protected boolean canMove() {
+    boolean canMove() {
         if(!isFull()) return true;
         for(int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
@@ -141,7 +141,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     private Cell[] moveLine(Cell[] oldLine) {
-        LinkedList<Cell> list = new LinkedList<Cell>();
+        LinkedList<Cell> list = new LinkedList<>();
         for(int i = 0; i < 4; i++) {
             if(!oldLine[i].isEmpty()){
                 list.addLast(oldLine[i]);
@@ -163,7 +163,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     private Cell[] mergeLine(Cell[] oldLine) {
-        LinkedList<Cell> list = new LinkedList<Cell>();
+        LinkedList<Cell> list = new LinkedList<>();
         for(int i = 0; i < 4 && !oldLine[i].isEmpty(); i++) {
             int num = oldLine[i].number;
             if (i < 3 && oldLine[i].number == oldLine[i+1].number) {
@@ -237,7 +237,7 @@ public class Game extends javafx.scene.canvas.Canvas {
         this.cells = cells;
     }
 
-    public void spawnCell() {
+    void spawnCell() {
         addCell();
     }
 
@@ -251,8 +251,8 @@ public class Game extends javafx.scene.canvas.Canvas {
 
     public int calculateScore() {
         int score = 0;
-        for (int i = 0; i < cells.length; i++) {
-            score += cells[i].number;
+        for (Cell cell : cells) {
+            score += cell.number;
         }
         return score;
     }
@@ -289,5 +289,26 @@ public class Game extends javafx.scene.canvas.Canvas {
 
     public int getScore() {
         return score;
+    }
+
+    public int calculateOuterLineWithMostPoints() {
+        int maxRow = Integer.MIN_VALUE;
+        int[] cols = new int[4];
+
+        int cellNumber;
+        int localMax;
+
+        for (int i = 0; i < 2; i++) {
+            localMax = 0;
+            for (int j = 0; j < 4; j++) {
+                cellNumber = cellAt(j,i*3).number;
+                localMax += cellNumber;
+                cols[i] += cellNumber;
+            }
+            if (localMax > maxRow) {
+                maxRow = localMax;
+            }
+        }
+        return Integer.max(maxRow, Integer.max(cols[0], cols[3]));
     }
 }

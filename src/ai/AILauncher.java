@@ -142,9 +142,14 @@ public class AILauncher {
         return gameLogic.calculateLineWithMostPoints();
     }*/
 
+    /*private int eval(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return gameLogic.calculateLineWithMostPoints()*gameLogic.availableSpace().size() + gameLogic.calculateLineWithMostPoints();
+    }*/
+
     private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return gameLogic.calculateLineWithMostPoints()*gameLogic.availableSpace().size();
+        return gameLogic.calculateOuterLineWithMostPoints()*gameLogic.availableSpace().size() + gameLogic.calculateOuterLineWithMostPoints();
     }
 
     public String getNextMove(Game game) {
