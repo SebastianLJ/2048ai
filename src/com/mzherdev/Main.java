@@ -1,17 +1,13 @@
 package com.mzherdev;
 
+import ai.AILauncher;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
@@ -19,14 +15,14 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.animation.AnimationTimer;
 
-import java.awt.*;
-
 /**
  * Created by mzherdev on 18.08.2015.
  */
 public class Main extends Application {
 
     private static final int CELL_SIZE = 64;
+    private final boolean[] moved = new boolean[1];
+
 
     public static void main(String[] args) {
         launch(args);
@@ -34,6 +30,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage myStage) throws Exception {
+
         myStage.setTitle("Game 2048");
 
         FlowPane rootNode = new FlowPane();
@@ -42,39 +39,42 @@ public class Main extends Application {
         myStage.setOnCloseRequest(event -> Platform.exit());
 
         Game game = new Game();
+
+        AILauncher ai = new AILauncher();
+
         Scene myScene = new Scene(rootNode, game.getWidth(), game.getHeight());
         myStage.setScene(myScene);
 
-        myScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ESCAPE) {
-                    game.resetGame();
-                }
-
-                if (!game.canMove() || (!game.win && !game.canMove())) {
-                    game.lose = true;
-                }
-
-                if (!game.win && !game.lose) {
-                    switch (event.getCode()) {
-                        case LEFT:
-                            game.left();
-                            break;
-                        case RIGHT:
-                            game.right();
-                            break;
-                        case DOWN:
-                            game.down();
-                            break;
-                        case UP:
-                            game.up();
-                            break;
-                    }
-                }
-                game.relocate(330, 390);
+        /*myScene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                game.resetGame();
             }
-        });
+
+            if (!game.canMove() || (!game.win && !game.canMove())) {
+                game.lose = true;
+            }
+
+            if (!game.win && !game.lose) {
+                switch (event.getCode()) {
+                    case LEFT:
+                        moved[0] = game.left();
+                        break;
+                    case RIGHT:
+                        moved[0] = game.right();
+                        break;
+                    case DOWN:
+                        moved[0] = game.down();
+                        break;
+                    case UP:
+                        moved[0] = game.up();
+                        break;
+                }
+                if (moved[0]) {
+                    game.spawnCell();
+                }
+            }
+            game.relocate(330, 390);
+        });*/
 
         rootNode.getChildren().add(game);
         myStage.show();
@@ -130,10 +130,52 @@ public class Main extends Application {
                 }
             }
         }.start();
+
+        new Thread(() -> {
+            while (true) {
+                Platform.runLater(() -> calculateAndMakeNextMove(game, ai));
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     private static int offsetCoors(int arg) {
         return arg * (16 + 64) + 16;
+    }
+
+    private void calculateAndMakeNextMove(Game game, AILauncher ai) {
+
+        String nextMove = ai.getNextMove(game);
+
+        if (!game.canMove() || (!game.win && !game.canMove())) {
+            game.lose = true;
+        }
+
+        if (!game.win && !game.lose) {
+            switch (nextMove) {
+                case "left":
+                    moved[0] = game.left();
+                    break;
+                case "right":
+                    moved[0] = game.right();
+                    break;
+                case "down":
+                    moved[0] = game.down();
+                    break;
+                case "up":
+                    moved[0] = game.up();
+                    break;
+            }
+            System.out.println("moved");
+            if (moved[0]) {
+                game.spawnCell();
+            }
+        }
+        game.relocate(330, 390);
     }
 
 }

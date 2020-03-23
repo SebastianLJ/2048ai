@@ -45,4 +45,9 @@ public class Cell {
         }
         return foreground;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
 }

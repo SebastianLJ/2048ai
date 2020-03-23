@@ -35,7 +35,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
 
-    void resetGame() {
+    public void resetGame() {
         score = 0;
         win = false;
         lose = false;
@@ -62,6 +62,20 @@ public class Game extends javafx.scene.canvas.Canvas {
         for(Cell c : cells)
             if(c.isEmpty())
                 list.add(c);
+        return list;
+    }
+
+    public String[] availableSpacesToString() {
+        String[] list = new String[2*availableSpace().size()];
+        int c = 0;
+        for (int i = 0; i < cells.length; i++) {
+            if (cells[i].isEmpty()) {
+                list[c] = i + " " + 2;
+                c++;
+                list[c] = i + " " + 4;
+                c++;
+            }
+        }
         return list;
     }
 
@@ -185,36 +199,70 @@ public class Game extends javafx.scene.canvas.Canvas {
         System.arraycopy(re, 0, cells, index * 4, 4);
     }
 
-    public void left() {
-        boolean needAddCell = false;
+    public boolean left() {
+        boolean moved = false;
         for(int i = 0; i < 4; i++) {
             Cell[] line = getLine(i);
             Cell[] merged = mergeLine(moveLine(line));
             setLine(i, merged);
-            if( !needAddCell && !compare(line, merged)) {
-                needAddCell = true;
+            if( !moved && !compare(line, merged)) {
+                moved = true;
             }
         }
-        if(needAddCell) {
-            addCell();
+        return moved;
+    }
+
+    public boolean right() {
+        cells = rotate(180);
+        boolean moved = left();
+        cells = rotate(180);
+        return moved;
+    }
+
+    public boolean up() {
+        cells = rotate(270);
+        boolean moved = left();
+        cells = rotate(90);
+        return moved;
+    }
+
+    public boolean down() {
+        cells = rotate(90);
+        boolean moved = left();
+        cells = rotate(270);
+        return moved;
+    }
+
+    public void setCells(Cell[] cells) {
+        this.cells = cells;
+    }
+
+    public void spawnCell() {
+        addCell();
+    }
+
+    public void spawnCell(String action) {
+        String[] indexAndNumber = action.split(" ");
+        int index = Integer.parseInt(indexAndNumber[0]); // Index in game board
+        int number = Integer.parseInt(indexAndNumber[1]); // Number to put on index (2 or 4)
+
+        cells[index] = new Cell(number);
+    }
+
+    public int calculateScore() {
+        int score = 0;
+        for (int i = 0; i < cells.length; i++) {
+            score += cells[i].number;
         }
+        return score;
     }
 
-    public void right() {
-        cells = rotate(180);
-        left();
-        cells = rotate(180);
-    }
-
-    public void up() {
-        cells = rotate(270);
-        left();
-        cells = rotate(90);
-    }
-
-    public void down() {
-        cells = rotate(90);
-        left();
-        cells = rotate(270);
+    public boolean winningState() {
+        for (Cell cell : cells) {
+            if (cell.number == 2048) {
+                return true;
+            }
+        }
+        return false;
     }
 }
