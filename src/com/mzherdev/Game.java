@@ -57,7 +57,7 @@ public class Game extends javafx.scene.canvas.Canvas {
 
     }
 
-    private List<Cell> availableSpace() {
+    public List<Cell> availableSpace() {
         List<Cell> list = new ArrayList<>(16);
         for(Cell c : cells)
             if(c.isEmpty())
@@ -264,5 +264,30 @@ public class Game extends javafx.scene.canvas.Canvas {
             }
         }
         return false;
+    }
+
+    public int calculateLineWithMostPoints() {
+        int maxRow = Integer.MIN_VALUE;
+        int[] cols = new int[4];
+
+        int cellNumber;
+        int localMax;
+
+        for (int i = 0; i < 4; i++) {
+            localMax = 0;
+            for (int j = 0; j < 4; j++) {
+                cellNumber = cellAt(i,j).number;
+                localMax += cellNumber;
+                cols[i] += cellNumber;
+            }
+            if (localMax > maxRow) {
+                maxRow = localMax;
+            }
+        }
+        return Integer.max(maxRow, Integer.max(cols[0], Integer.max(cols[1], Integer.max(cols[2], cols[3]))));
+    }
+
+    public int getScore() {
+        return score;
     }
 }

@@ -135,7 +135,7 @@ public class Main extends Application {
             while (true) {
                 Platform.runLater(() -> calculateAndMakeNextMove(game, ai));
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(80);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

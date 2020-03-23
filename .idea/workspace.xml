@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56f7cd0a-95f3-471c-8eb6-bb9b0b9fc1e8" name="Default Changelist" comment="&quot;Optimized imports&quot;">
-      <change afterPath="$PROJECT_DIR$/src/ai/State.java" afterDir="false" />
+    <list default="true" id="56f7cd0a-95f3-471c-8eb6-bb9b0b9fc1e8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2048.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2048.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ai/AILauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/AILauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzherdev/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mzherdev/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/mzherdev/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mzherdev/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/mzherdev/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mzherdev/Main.java" afterDir="false" />
     </list>
@@ -32,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/mzherdev/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
+            <state relative-caret-position="308">
+              <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2236#4732#0" expanded="true" />
@@ -49,17 +40,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ai/AILauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
+            <state relative-caret-position="294">
+              <caret line="146" column="89" lean-forward="true" selection-start-line="146" selection-start-column="89" selection-end-line="146" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#186#187#0" expanded="true" />
                 <element signature="e#223#224#0" expanded="true" />
-                <element signature="e#506#537#0" expanded="true" />
-                <element signature="e#1591#1592#0" expanded="true" />
-                <element signature="e#1637#1638#0" expanded="true" />
-                <element signature="e#1908#1909#0" expanded="true" />
-                <element signature="e#1942#1943#0" expanded="true" />
+                <element signature="e#261#262#0" expanded="true" />
+                <element signature="e#456#487#0" expanded="true" />
+                <element signature="e#1999#2000#0" expanded="true" />
+                <element signature="e#2045#2046#0" expanded="true" />
+                <element signature="e#2086#2087#0" expanded="true" />
+                <element signature="e#2121#2122#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,8 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/mzherdev/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="67" column="20" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+            <state relative-caret-position="291">
+              <caret line="290" column="21" selection-start-line="290" selection-start-column="21" selection-end-line="290" selection-end-column="21" />
               <folding>
                 <element signature="e#420#421#0" expanded="true" />
                 <element signature="e#448#449#0" expanded="true" />
@@ -95,6 +86,8 @@
                 <element signature="e#5107#5108#0" expanded="true" />
                 <element signature="e#5943#5944#0" expanded="true" />
                 <element signature="e#5977#5978#0" expanded="true" />
+                <element signature="e#7442#7443#0" expanded="true" />
+                <element signature="e#7466#7467#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,6 +128,10 @@
       <find>re</find>
       <find>calc</find>
       <find>win</find>
+      <find>get</find>
+      <find>cell</find>
+      <find>setCel</find>
+      <find>score</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,8 +146,8 @@
         <option value="$PROJECT_DIR$/src/com/mzherdev/GameMoves.java" />
         <option value="$PROJECT_DIR$/src/com/mzherdev/Cell.java" />
         <option value="$PROJECT_DIR$/src/com/mzherdev/Main.java" />
-        <option value="$PROJECT_DIR$/src/ai/AILauncher.java" />
         <option value="$PROJECT_DIR$/src/com/mzherdev/Game.java" />
+        <option value="$PROJECT_DIR$/src/ai/AILauncher.java" />
       </list>
     </option>
   </component>
@@ -292,12 +289,27 @@
       <updated>1583837998075</updated>
       <workItem from="1583837999510" duration="69000" />
       <workItem from="1584521062758" duration="173000" />
-      <workItem from="1584951729211" duration="9897000" />
+      <workItem from="1584951729211" duration="14512000" />
     </task>
+    <task id="LOCAL-00001" summary="&quot;Working but not great AI&quot;">
+      <created>1584962322421</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584962322421</updated>
+    </task>
+    <task id="LOCAL-00002" summary="&quot;Working but not great AI&quot;">
+      <created>1584962485914</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1584962485914</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21749000" />
+    <option name="totallyTimeSpent" value="26364000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1552" height="840" extended-state="0" />
@@ -318,7 +330,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32909605" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -336,6 +348,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;Working but not great AI&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Working but not great AI&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="569" y="357" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1583838016133">
@@ -389,21 +405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mzherdev/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2236#4732#0" expanded="true" />
-            <element signature="e#2751#4896#1" />
-            <element signature="e#4731#4732#0" expanded="true" />
-            <element signature="e#5131#5132#0" expanded="true" />
-            <element signature="e#5174#5175#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ai/State.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-100">
@@ -417,10 +418,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mzherdev/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2236#4732#0" expanded="true" />
+            <element signature="e#2751#4896#1" />
+            <element signature="e#4731#4732#0" expanded="true" />
+            <element signature="e#5131#5132#0" expanded="true" />
+            <element signature="e#5174#5175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mzherdev/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="67" column="20" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+        <state relative-caret-position="291">
+          <caret line="290" column="21" selection-start-line="290" selection-start-column="21" selection-end-line="290" selection-end-column="21" />
           <folding>
             <element signature="e#420#421#0" expanded="true" />
             <element signature="e#448#449#0" expanded="true" />
@@ -431,23 +447,25 @@
             <element signature="e#5107#5108#0" expanded="true" />
             <element signature="e#5943#5944#0" expanded="true" />
             <element signature="e#5977#5978#0" expanded="true" />
+            <element signature="e#7442#7443#0" expanded="true" />
+            <element signature="e#7466#7467#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ai/AILauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
+        <state relative-caret-position="294">
+          <caret line="146" column="89" lean-forward="true" selection-start-line="146" selection-start-column="89" selection-end-line="146" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#186#187#0" expanded="true" />
             <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#506#537#0" expanded="true" />
-            <element signature="e#1591#1592#0" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
-            <element signature="e#1908#1909#0" expanded="true" />
-            <element signature="e#1942#1943#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#456#487#0" expanded="true" />
+            <element signature="e#1999#2000#0" expanded="true" />
+            <element signature="e#2045#2046#0" expanded="true" />
+            <element signature="e#2086#2087#0" expanded="true" />
+            <element signature="e#2121#2122#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -128,13 +128,23 @@ public class AILauncher {
     }
 
     private boolean cutoffTest(State state, int d) {
-        gameLogic.setCells(state.getCells());
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
         return gameLogic.winningState() || d > 5;
     }
 
-    private int eval(State state /*Player? */) {
-        gameLogic.setCells(state.getCells());
-        return gameLogic.calculateScore()/gameLogic.getCells().length;
+    /*private int eval(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return gameLogic.availableSpace().size();
+    }*/
+
+    /*private int eval(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return gameLogic.calculateLineWithMostPoints();
+    }*/
+
+    private int eval(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return gameLogic.calculateLineWithMostPoints()*gameLogic.availableSpace().size();
     }
 
     public String getNextMove(Game game) {
