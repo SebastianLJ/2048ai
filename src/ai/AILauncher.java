@@ -24,7 +24,7 @@ public class AILauncher {
     private int hMiniMax(State s, int d) {
         //System.out.println("current state: " + Arrays.toString(s.getCells()));
         if (cutoffTest(s, d)) {
-            return eval(s);
+            return evalWeight(s);
         }
 
         List<String> actions = actions(s, d);
@@ -150,6 +150,18 @@ public class AILauncher {
     private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
         return gameLogic.calculateOuterLineWithMostPoints()*gameLogic.availableSpace().size() + gameLogic.calculateOuterLineWithMostPoints();
+    }
+
+    private int evalWeight(State state) {
+        int[] weigths = {-12, -8, -5, -3,
+                         8, 6, 3, 1,
+                         10, 12, 15, 18,
+                         50, 35, 25, 20};
+        int sum = 0;
+        for (int i = 0; i < state.getCells().length; i++) {
+            sum += weigths[i]*state.getCells()[i].getNumber();
+        }
+        return sum;
     }
 
     public String getNextMove(Game game) {
