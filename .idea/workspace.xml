@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="74376c4d-788c-4465-ba6a-b6e1e3d9d436" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2048.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2048.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2048/com/mzherdev/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ai/AILauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/AILauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzherdev/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mzherdev/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mzherdev/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mzherdev/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +62,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>

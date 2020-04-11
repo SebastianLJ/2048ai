@@ -220,7 +220,7 @@ public class AILauncher {
 
     }
 
-    private int newEval() { //Noah's attempt at eval function
+    private int newEval() { //Noah's attempt at eval function. It isn't very good - yet.
         int[] directionScores = new int[4];
         //UP/DOWN
 
