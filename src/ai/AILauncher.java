@@ -17,12 +17,13 @@ public class AILauncher {
     }
 
     private void helper(State s) {
-        int optimal = expectiminimax(s, 0);
-        System.out.println("Best Action is to go " + s.getMove() + " and the optimal value is " + optimal);
+        //int optimal = expectiminimax(s, 0);
+        int optimal = hMiniMax(s, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        //System.out.println("Best Action is to go " + s.getMove() + " and the optimal value is " + optimal);
     }
 
     @SuppressWarnings("Duplicates")
-    private int hMiniMax(State s, int d) {
+    private int hMiniMax(State s, int d, int alpha, int beta) {
         //System.out.println("current state: " + Arrays.toString(s.getCells()));
         if (cutoffTest(s, d)) {
             return evalWeight(s);
@@ -38,10 +39,15 @@ public class AILauncher {
             int max = Integer.MIN_VALUE;
             for (String action : actions) {
                 resultingState = result(s, action);
-                searchValue = hMiniMax(resultingState, d + 1);
+                searchValue = hMiniMax(resultingState, d + 1, alpha, beta);
                 if (searchValue > max) {
-                    max = searchValue;
                     s.setMove(action);
+                }
+                max = Integer.max(max, searchValue);
+                alpha = Integer.max(alpha, max);
+                if (beta <= alpha) {
+                    s.setMove(action);
+                    break;
                 }
             }
             //System.out.println("Maximizer: " + max);
@@ -50,10 +56,15 @@ public class AILauncher {
             int min = Integer.MAX_VALUE;
             for (String action : actions) {
                 resultingState = result(s, action);
-                searchValue = hMiniMax(resultingState, d + 1);
+                searchValue = hMiniMax(resultingState, d + 1, alpha, beta);
                 if (searchValue < min) {
-                    min = searchValue;
                     s.setMove(action);
+                }
+                min = Integer.min(min, searchValue);
+                beta = Integer.min(beta, min);
+                if (beta <= alpha) {
+                    s.setMove(action);
+                    break;
                 }
             }
             //System.out.println("Minimizer: " + min);
@@ -155,13 +166,13 @@ public class AILauncher {
     }
 
     private int evalWeight(State state) {
-        int[] weigths = {-12, -8, -5, -3,
-                8, 6, 3, 1,
-                10, 12, 15, 18,
-                50, 35, 25, 20};
+        int[] weigths = {-40, -38, -35, -30,
+                -5, -15, -18, -20,
+                5, 7, 10, 20,
+                90, 70, 60, 55};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
-            sum += weigths[i] * state.getCells()[i].getNumber();
+            sum += weigths[i]*state.getCells()[i].getNumber();
         }
         return sum;
     }
