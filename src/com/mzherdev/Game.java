@@ -13,7 +13,8 @@ import java.util.List;
  */
 public class Game extends javafx.scene.canvas.Canvas {
 
-    private Cell[] cells;
+    private Cell[] cells; //Cells indexes are increasing in reading direction (left to right). cells[0] is upper left corner, cells[3] is upper right corner.
+
     boolean win = false;
     boolean lose = false;
     int score = 0;
@@ -57,6 +58,17 @@ public class Game extends javafx.scene.canvas.Canvas {
 
     }
 
+    public Cell chooseCelVal(int val) { //method to choose which tile (a 2 or 4 tile) will be generated on the board.
+        Cell emptyCell = new Cell();
+        List<Cell> list = availableSpace();
+        if(!availableSpace().isEmpty()) {
+            int index = (int) (Math.random() * list.size()) % list.size();
+            emptyCell = list.get(index);
+            emptyCell.number = val;
+        }
+        return emptyCell;
+    }
+
     public List<Cell> availableSpace() {
         List<Cell> list = new ArrayList<>(16);
         for(Cell c : cells)
@@ -83,7 +95,7 @@ public class Game extends javafx.scene.canvas.Canvas {
         return availableSpace().size() == 0;
     }
 
-    private Cell cellAt(int x, int y) {
+    public Cell cellAt(int x, int y) {
         return cells[x + y * 4];
     }
 
@@ -169,7 +181,7 @@ public class Game extends javafx.scene.canvas.Canvas {
             if (i < 3 && oldLine[i].number == oldLine[i+1].number) {
                 num *= 2;
                 score += num;
-                if ( num == 2048) {
+                if ( num == Integer.MAX_VALUE) {
                     win = true;
                 }
                 i++;
@@ -240,6 +252,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     void spawnCell() {
         addCell();
     }
+
 
     public void spawnCell(String action) {
         String[] indexAndNumber = action.split(" ");

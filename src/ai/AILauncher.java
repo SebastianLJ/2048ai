@@ -10,13 +10,14 @@ import java.util.List;
 public class AILauncher {
 
     private Game gameLogic;
+    private Cell emptyCell;
 
     public AILauncher() {
         gameLogic = new Game();
     }
 
     private void helper(State s) {
-        int optimal = hMiniMax(s, 0);
+        int optimal = expectiminimax(s, 0);
         System.out.println("Best Action is to go " + s.getMove() + " and the optimal value is " + optimal);
     }
 
@@ -62,6 +63,7 @@ public class AILauncher {
 
     /**
      * Find out who's turn it is in a given state.
+     *
      * @param state the current game state containing (game, move)
      * @return 0 player, 1 nature
      */
@@ -70,7 +72,7 @@ public class AILauncher {
     }
 
     private boolean player(int depth) {
-        return depth%2 == 0;
+        return depth % 2 == 0;
     }
 
     private List<String> actions(State state, int depth) {
@@ -79,7 +81,7 @@ public class AILauncher {
             String[] allMoves = {"left", "right", "up", "down"};
 
             for (String move : allMoves) {
-                gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+                gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
 
                 switch (move) {
                     case "left":
@@ -100,13 +102,13 @@ public class AILauncher {
             return availableMoves;
 
         } else {
-            gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+            gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
             return Arrays.asList(gameLogic.availableSpacesToString());
         }
     }
 
     private State result(State state, String action) {
-        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
         switch (action) {
             case "left":
                 gameLogic.left();
@@ -128,7 +130,7 @@ public class AILauncher {
     }
 
     private boolean cutoffTest(State state, int d) {
-        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
         return gameLogic.winningState() || d > 5;
     }
 
@@ -148,18 +150,18 @@ public class AILauncher {
     }*/
 
     private int eval(State state) {
-        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return gameLogic.calculateOuterLineWithMostPoints()*gameLogic.availableSpace().size() + gameLogic.calculateOuterLineWithMostPoints();
+        gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
+        return gameLogic.calculateOuterLineWithMostPoints() + gameLogic.availableSpace().size();
     }
 
     private int evalWeight(State state) {
         int[] weigths = {-12, -8, -5, -3,
-                         8, 6, 3, 1,
-                         10, 12, 15, 18,
-                         50, 35, 25, 20};
+                8, 6, 3, 1,
+                10, 12, 15, 18,
+                50, 35, 25, 20};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
-            sum += weigths[i]*state.getCells()[i].getNumber();
+            sum += weigths[i] * state.getCells()[i].getNumber();
         }
         return sum;
     }
@@ -170,4 +172,100 @@ public class AILauncher {
         helper(s0);
         return s0.getMove();
     }
+
+    private int expectiminimax(State s, int height) {
+
+        if (cutoffTest(s, height)) {
+            return newEval();
+        }
+
+        if (player(height)) { // if it's our turn
+            List<String> actions = actions(s, height);
+            int alpha = Integer.MIN_VALUE;
+            for (String action : actions) {
+                State resultingState;
+                resultingState = result(s, action);
+                int searchValue = expectiminimax(resultingState, height + 1);
+                if (searchValue > alpha) {
+                    alpha = searchValue;
+                    s.setMove(action);
+                }
+
+            }
+            return alpha;
+        } else { // if it's the game's turn
+            int alpha = 0;
+            int searchvalue = 0;
+            List<String> actions = actions(s, height);
+
+            for (String action : actions) {
+                State resultingState;
+                resultingState = result(s, action);
+                Cell emptyCell = gameLogic.chooseCelVal(4);
+                searchvalue = expectiminimax(resultingState, height + 1);
+                if (searchvalue != Integer.MIN_VALUE) {
+                    alpha += 0.1 * searchvalue;
+                    s.setMove(action);
+                }
+                emptyCell.setNumber(2); //and remove the value 4 u just inserted above.
+                searchvalue = expectiminimax(resultingState, height + 1);
+                if (searchvalue != Integer.MIN_VALUE) {
+                    alpha += 0.9 * searchvalue;
+                    s.setMove(action);
+                }
+            }
+            return alpha / 16;
+
+        }
+
+    }
+
+    private int newEval() { //Noah's attempt at eval function
+        int[] directionScores = new int[4];
+        //UP/DOWN
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                int currentTile = j;
+                int nextTile = j + 1;
+
+                int currentValue = !gameLogic.cellAt(i, currentTile).isEmpty() ? gameLogic.cellAt(i, currentTile).getNumber() : 0;
+                int nextValue = !gameLogic.cellAt(i, nextTile).isEmpty() ? gameLogic.cellAt(i, nextTile).getNumber() : 0;
+
+                if (currentValue > nextValue) {
+                    directionScores[0] += nextValue - currentValue; //down to uP
+                }
+                if (currentValue < nextValue) {
+                    directionScores[1] += currentValue - nextValue; //up to down
+                }
+
+
+            }
+        }
+
+        //LEFT/RIGHT
+
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                int currentTile = j;
+                int nextTile = j + 1;
+
+                int currentValue = !gameLogic.cellAt(currentTile, i).isEmpty() ? gameLogic.cellAt(currentTile, j).getNumber() : 0;
+                int nextValue = !gameLogic.cellAt(nextTile, i).isEmpty() ? gameLogic.cellAt(nextTile, j).getNumber() : 0;
+
+                if (currentValue > nextValue) {
+                    directionScores[2] += nextValue - currentValue; //left to right
+                }
+                if (currentValue < nextValue) {
+                    directionScores[3] += currentValue - nextValue; //right to left
+                }
+            }
+
+        }
+
+        return Math.max(directionScores[0] + directionScores[1], directionScores[2] + directionScores[3]) + gameLogic.availableSpace().size()*3;
+
+    }
+
 }
