@@ -11,6 +11,7 @@ public class AILauncher {
 
     private Game gameLogic;
     private Cell emptyCell;
+    private final int DEPTH = 5;
 
     public AILauncher() {
         gameLogic = new Game();
@@ -142,7 +143,7 @@ public class AILauncher {
 
     private boolean cutoffTest(State state, int d) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
-        return gameLogic.winningState() || d > 5;
+        return gameLogic.winningState() || d > DEPTH;
     }
 
     /*private int eval(State state) {
@@ -169,7 +170,7 @@ public class AILauncher {
         int[] weigths = {-40, -38, -35, -30,
                 -5, -15, -18, -20,
                 5, 7, 10, 20,
-                90, 70, 60, 55};
+                110, 70, 60, 55};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
             sum += weigths[i]*state.getCells()[i].getNumber();

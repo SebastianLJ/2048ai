@@ -22,6 +22,7 @@ public class Main extends Application {
 
     private static final int CELL_SIZE = 64;
     private final boolean[] moved = new boolean[1];
+    private final int SLEEP_TIMER = 80;
 
 
     public static void main(String[] args) {
@@ -135,7 +136,7 @@ public class Main extends Application {
             while (!game.win || !game.lose) {
                 Platform.runLater(() -> calculateAndMakeNextMove(game, ai));
                 try {
-                    Thread.sleep(80);
+                    Thread.sleep(SLEEP_TIMER);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
