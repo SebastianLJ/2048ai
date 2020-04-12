@@ -75,6 +75,7 @@ public class Main extends Application {
                 }
             }
             game.relocate(330, 390);
+            game.nonMonotonicPenalty();
         });
 
         rootNode.getChildren().add(game);

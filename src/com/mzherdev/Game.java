@@ -186,9 +186,9 @@ public class Game extends javafx.scene.canvas.Canvas {
             if (i < 3 && oldLine[i].number == oldLine[i+1].number) {
                 num *= 2;
                 score += num;
-                if ( num == 2048) {
+                /*if ( num == 2048) {
                     win = true;
-                }
+                }*/
                 i++;
             }
             list.add(new Cell(num));
@@ -331,7 +331,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public int nonMonotonicPenalty() {
-        return nonMonotonicRows() + nonMonotonicCols();
+        return nonMonotonicCols() + nonMonotonicRows();
     }
 
     private int nonMonotonicCols() {
@@ -350,22 +350,20 @@ public class Game extends javafx.scene.canvas.Canvas {
 
                 weightOfColumns[x] += cellNumber;
 
-                if (cellNumber >= nextCellNumber && cellNumber + nextCellNumber > 0) {
+                if (cellNumber > nextCellNumber && cellNumber != 0 && nextCellNumber != 0) {
                     nonMonotonicCol = true;
                 }
-                if (cellNumber <= nextCellNumber && cellNumber + nextCellNumber > 0) {
+                if (cellNumber < nextCellNumber && cellNumber != 0 && nextCellNumber != 0) {
                     nonMonotonicColReversed = true;
                 }
             }
 
             weightOfColumns[x] += nextCellNumber;
 
-            if (nonMonotonicCol && nonMonotonicColReversed ) nonMonotonicCols += 1;
+            if (nonMonotonicCol && nonMonotonicColReversed ) nonMonotonicCols += weightOfColumns[x];
             nonMonotonicCol = false;
             nonMonotonicColReversed = false;
         }
-
-        System.out.println(nonMonotonicCols);
         return nonMonotonicCols;
     }
 
@@ -385,22 +383,21 @@ public class Game extends javafx.scene.canvas.Canvas {
                 cellNumber = cellAt(x,y).getNumber();
                 nextCellNumber = cellAt(x+1,y).getNumber();
 
-                if (cellNumber > nextCellNumber && cellNumber + nextCellNumber > 0) {
+                if (cellNumber > nextCellNumber && cellNumber != 0 && nextCellNumber != 0) {
                     nonMonotonicRow = true;
                 }
-                if (cellNumber < nextCellNumber && cellNumber + nextCellNumber > 0) {
+                if (cellNumber < nextCellNumber && cellNumber != 0 && nextCellNumber != 0) {
                     nonMonotonicRowReversed = true;
                 }
             }
 
             weightOfRows[y] += nextCellNumber;
 
-            if (nonMonotonicRow && nonMonotonicRowReversed) nonMonotonicRows += 1 /*weightOfRows[y]*/;
+            if (nonMonotonicRow && nonMonotonicRowReversed) nonMonotonicRows += weightOfRows[y];
             nonMonotonicRow = false;
             nonMonotonicRowReversed = false;
         }
 
-        //System.out.println(nonMonotonicRows);
         return nonMonotonicRows;
     }
 

@@ -108,7 +108,6 @@ public class AILauncher {
                         break;
                 }
             }
-            System.out.println(availableMoves);
             return availableMoves;
 
         } else {
@@ -144,10 +143,10 @@ public class AILauncher {
         return /*gameLogic.winningState() ||*/ d > DEPTH;
     }
 
-    private int eval(State state) {
+    /*private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
         return gameLogic.availableSpace().size();
-    }
+    }*/
 
     /*private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
@@ -159,10 +158,10 @@ public class AILauncher {
         return gameLogic.calculateLineWithMostPoints()*gameLogic.availableSpace().size() + gameLogic.calculateLineWithMostPoints();
     }*/
 
-    /*private int eval(State state) {
+    private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return gameLogic.calculatePointsOnOuterLines()*gameLogic.availableSpace().size() + gameLogic.calculatePointsOnOuterLines();
-    }*/
+        return gameLogic.calculatePointsOnOuterLines()*gameLogic.availableSpace().size() + gameLogic.calculatePointsOnOuterLines() - gameLogic.nonMonotonicPenalty()*10;
+    }
 
     /*private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
