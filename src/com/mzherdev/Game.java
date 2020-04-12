@@ -18,6 +18,9 @@ public class Game extends javafx.scene.canvas.Canvas {
     boolean win = false;
     boolean lose = false;
     int score = 0;
+    int totalMoves = 0;
+
+
 
     public Cell[] getCells() {
         return cells;
@@ -181,7 +184,7 @@ public class Game extends javafx.scene.canvas.Canvas {
             if (i < 3 && oldLine[i].number == oldLine[i+1].number) {
                 num *= 2;
                 score += num;
-                if ( num == Integer.MAX_VALUE) {
+                if ( num == 2048) {
                     win = true;
                 }
                 i++;
@@ -212,6 +215,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public boolean left() {
+        totalMoves++;
         boolean moved = false;
         for(int i = 0; i < 4; i++) {
             Cell[] line = getLine(i);
@@ -225,6 +229,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public boolean right() {
+        totalMoves++;
         cells = rotate(180);
         boolean moved = left();
         cells = rotate(180);
@@ -232,6 +237,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public boolean up() {
+        totalMoves++;
         cells = rotate(270);
         boolean moved = left();
         cells = rotate(90);
@@ -239,6 +245,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public boolean down() {
+        totalMoves++;
         cells = rotate(90);
         boolean moved = left();
         cells = rotate(270);

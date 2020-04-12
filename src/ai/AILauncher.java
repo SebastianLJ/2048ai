@@ -47,7 +47,6 @@ public class AILauncher {
                 max = Integer.max(max, searchValue);
                 alpha = Integer.max(alpha, max);
                 if (beta <= alpha) {
-                    s.setMove(action);
                     break;
                 }
             }
@@ -64,7 +63,6 @@ public class AILauncher {
                 min = Integer.min(min, searchValue);
                 beta = Integer.min(beta, min);
                 if (beta <= alpha) {
-                    s.setMove(action);
                     break;
                 }
             }
