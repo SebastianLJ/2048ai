@@ -341,7 +341,8 @@ public class Game extends javafx.scene.canvas.Canvas {
     public String getResults() {
         String s = "score: " + score +
                 "\n" + "moves: " + totalMoves +
-                "\n" + "moves/second: " + totalMoves/getTime()*1000 + "\n";
+                "\n" + "time: " + getTime()/1000 +
+                "\n" + "moves/second: " + totalMoves/(getTime()/1000) + "\n";
         return s;
     }
 }

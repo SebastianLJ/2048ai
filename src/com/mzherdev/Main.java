@@ -124,6 +124,7 @@ public class Main extends Application {
                                 gc.setFill(Color.rgb(128, 128, 128));
                                 gc.fillText("Press ESC to play again", 110, 270);
                                 System.out.println(game.getResults());
+                                this.stop();
                             }
                         }
                         gc.setFont(Font.font("Verdana", FontWeight.LIGHT, 18));

@@ -11,7 +11,7 @@ public class AILauncher {
 
     private Game gameLogic;
     private Cell emptyCell;
-    private final int DEPTH = 5;
+    private final int DEPTH = 6;
 
     public AILauncher() {
         gameLogic = new Game();
