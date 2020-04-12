@@ -159,8 +159,8 @@ public class AILauncher {
     }*/
 
     private int eval(State state) {
-        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return gameLogic.calculatePointsOnOuterLines()*gameLogic.availableSpace().size() + gameLogic.calculatePointsOnOuterLines() + gameLogic.nonMonotonicPenalty()*2;
+        gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
+        return gameLogic.calculatePointsOnOuterLines() * gameLogic.availableSpace().size() + gameLogic.calculatePointsOnOuterLines() - gameLogic.nonMonotonicPenalty() * 10;
     }
 
     /*private int eval(State state) {
@@ -175,19 +175,19 @@ public class AILauncher {
                 110, 70, 60, 55};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
-            sum += weigths[i]*state.getCells()[i].getNumber();
+            sum += weigths[i] * state.getCells()[i].getNumber();
         }
         return sum;
     }
 
     private int evalWeight2(State state) {
         int[] weigths = {20, 15, 10, 5,
-                        30, 20, 15, 10,
-                        40, 30, 20, 15,
-                        60, 40, 30, 20};
+                30, 20, 15, 10,
+                40, 30, 20, 15,
+                60, 40, 30, 20};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
-            sum += weigths[i]*state.getCells()[i].getNumber();
+            sum += weigths[i] * state.getCells()[i].getNumber();
         }
         return sum;
     }
@@ -219,26 +219,18 @@ public class AILauncher {
             return alpha;
         } else { // if it's the game's turn
             int alpha = 0;
-            int searchvalue = 0;
             List<String> actions = actions(s, height);
-            for (int i = 0; i < actions.size(); i+=2) {
-
+            for (int i = 0; i < actions.size(); i += 2) {
                 State resultingState;
                 resultingState = result(s, actions.get(i));
-                searchvalue = expectiminimax(resultingState, height + 1);
-                if (searchvalue != Integer.MIN_VALUE) { //if we're inserting a 2 as tile.
-                    alpha += 0.9 * searchvalue;
-                }
+                alpha += 0.9 * expectiminimax(resultingState, height + 1);
                 resultingState = result(s, actions.get(i + 1));
-                searchvalue = expectiminimax(resultingState, height + 1);
-                if (searchvalue != Integer.MIN_VALUE) {
-                    alpha += 0.1 * searchvalue;
-                }
-
+                alpha += 0.1 * expectiminimax(resultingState, height + 1);
             }
-            return  gameLogic.availableSpace().size() == 0 ? alpha/Integer.MIN_VALUE : alpha / gameLogic.availableSpace().size();
+            return gameLogic.availableSpace().size() == 0 ? 0 : alpha / gameLogic.availableSpace().size();
         }
     }
+
     private int newEval() { //Noah's attempt at eval function. It isn't very good - yet.
         int[] directionScores = new int[4];
         //UP/DOWN
@@ -283,7 +275,7 @@ public class AILauncher {
 
         }
 
-        return Math.max(directionScores[0] + directionScores[1], directionScores[2] + directionScores[3]) + gameLogic.availableSpace().size()*3;
+        return Math.max(directionScores[0] + directionScores[1], directionScores[2] + directionScores[3]) + gameLogic.availableSpace().size() * 3;
 
     }
 
