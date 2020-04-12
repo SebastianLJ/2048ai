@@ -8,6 +8,8 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
 /**
  * Created by mzherdev on 18.08.2015.
  */
@@ -41,7 +43,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
 
-    private void resetGame() {
+    void resetGame() {
         score = 0;
         win = false;
         lose = false;
@@ -313,25 +315,122 @@ public class Game extends javafx.scene.canvas.Canvas {
         return score;
     }
 
-    public int calculateOuterLineWithMostPoints() {
-        int maxRow = Integer.MIN_VALUE;
-        int[] cols = new int[4];
+    public int calculatePointsOnOuterLines() {
+        int[] rows = new int [4];
+        int[] cols = new int [4];
 
         int cellNumber;
-        int localMax;
 
-        for (int i = 0; i < 2; i++) {
-            localMax = 0;
-            for (int j = 0; j < 4; j++) {
-                cellNumber = cellAt(j,i*3).number;
-                localMax += cellNumber;
-                cols[i] += cellNumber;
-            }
-            if (localMax > maxRow) {
-                maxRow = localMax;
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                cellNumber = cellAt(x,y).number;
+                cols[x] += cellNumber;
+                rows[y] += cellNumber;
             }
         }
-        return Integer.max(maxRow, Integer.max(cols[0], cols[3]));
+        return rows[0] + rows[3] + cols[0] + cols[3];
+        //return Integer.max(rows[0], Integer.max(rows[3], Integer.max(cols[0], cols[3])));
+    }
+
+    public int nonMonotonicPenalty() {
+        return nonMonotonicRows() + nonMonotonicCols();
+    }
+
+    private int nonMonotonicCols() {
+        int[] weightOfColumns = new int[4];
+        int nonMonotonicCols = 0;
+        boolean nonMonotonicCol = false;
+        boolean nonMonotonicColReversed = false;
+
+        int cellNumber = 0;
+        int nextCellNumber = 0;
+
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 3; y++) {
+                cellNumber = cellAt(x,y).getNumber();
+                nextCellNumber = cellAt(x,y+1).getNumber();
+
+                weightOfColumns[x] += cellNumber;
+
+                if (cellNumber >= nextCellNumber && cellNumber + nextCellNumber > 0) {
+                    nonMonotonicCol = true;
+                }
+                if (cellNumber <= nextCellNumber && cellNumber + nextCellNumber > 0) {
+                    nonMonotonicColReversed = true;
+                }
+            }
+
+            weightOfColumns[x] += nextCellNumber;
+
+            if (nonMonotonicCol && nonMonotonicColReversed ) nonMonotonicCols += 1;
+            nonMonotonicCol = false;
+            nonMonotonicColReversed = false;
+        }
+
+        System.out.println(nonMonotonicCols);
+        return nonMonotonicCols;
+    }
+
+    private int nonMonotonicRows() {
+        int[] weightOfRows = new int[4];
+        int nonMonotonicRows = 0;
+        boolean nonMonotonicRow = false;
+        boolean nonMonotonicRowReversed = false;
+
+        int cellNumber = 0;
+        int nextCellNumber = 0;
+
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 3; x++) {
+                weightOfRows[y] += cellNumber;
+
+                cellNumber = cellAt(x,y).getNumber();
+                nextCellNumber = cellAt(x+1,y).getNumber();
+
+                if (cellNumber > nextCellNumber && cellNumber + nextCellNumber > 0) {
+                    nonMonotonicRow = true;
+                }
+                if (cellNumber < nextCellNumber && cellNumber + nextCellNumber > 0) {
+                    nonMonotonicRowReversed = true;
+                }
+            }
+
+            weightOfRows[y] += nextCellNumber;
+
+            if (nonMonotonicRow && nonMonotonicRowReversed) nonMonotonicRows += 1 /*weightOfRows[y]*/;
+            nonMonotonicRow = false;
+            nonMonotonicRowReversed = false;
+        }
+
+        //System.out.println(nonMonotonicRows);
+        return nonMonotonicRows;
+    }
+
+
+
+    public double calculateDistanceFromCorner() {
+        int[] pos = new int[2];
+        findPositionOfBiggestNumber(pos);
+        return 1-(pos[0]+abs(pos[1]-3))*0.3;
+    }
+
+    public void getPositionOfBiggestNumber() {
+        int[] pos = new int[2];
+        findPositionOfBiggestNumber(pos);
+        System.out.println(Arrays.toString(pos));
+    }
+
+    private void findPositionOfBiggestNumber(int [] pos) {
+        int max = 0;
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                if (cellAt(x,y).getNumber() > max) {
+                    max = cellAt(x,y).getNumber();
+                    pos[0] = x;
+                    pos[1] = y;
+                }
+            }
+        }
     }
 
     public long getTime() {

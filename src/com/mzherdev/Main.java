@@ -46,7 +46,7 @@ public class Main extends Application {
         Scene myScene = new Scene(rootNode, game.getWidth(), game.getHeight());
         myStage.setScene(myScene);
 
-        /*myScene.setOnKeyPressed(event -> {
+        myScene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 game.resetGame();
             }
@@ -75,7 +75,7 @@ public class Main extends Application {
                 }
             }
             game.relocate(330, 390);
-        });*/
+        });
 
         rootNode.getChildren().add(game);
         myStage.show();

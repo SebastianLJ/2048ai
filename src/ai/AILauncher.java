@@ -20,14 +20,14 @@ public class AILauncher {
     private void helper(State s) {
         //int optimal = expectiminimax(s, 0);
         int optimal = hMiniMax(s, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        //System.out.println("Best Action is to go " + s.getMove() + " and the optimal value is " + optimal);
+        System.out.println("Best Action is to go " + s.getMove() + " and the optimal value is " + optimal);
     }
 
     @SuppressWarnings("Duplicates")
     private int hMiniMax(State s, int d, int alpha, int beta) {
         //System.out.println("current state: " + Arrays.toString(s.getCells()));
         if (cutoffTest(s, d)) {
-            return evalWeight(s);
+            return eval(s);
         }
 
         List<String> actions = actions(s, d);
@@ -41,7 +41,7 @@ public class AILauncher {
             for (String action : actions) {
                 resultingState = result(s, action);
                 searchValue = hMiniMax(resultingState, d + 1, alpha, beta);
-                if (searchValue > max) {
+                if (searchValue >= max) {
                     s.setMove(action);
                 }
                 max = Integer.max(max, searchValue);
@@ -108,7 +108,7 @@ public class AILauncher {
                         break;
                 }
             }
-
+            System.out.println(availableMoves);
             return availableMoves;
 
         } else {
@@ -141,13 +141,13 @@ public class AILauncher {
 
     private boolean cutoffTest(State state, int d) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
-        return gameLogic.winningState() || d > DEPTH;
+        return /*gameLogic.winningState() ||*/ d > DEPTH;
     }
 
-    /*private int eval(State state) {
+    private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
         return gameLogic.availableSpace().size();
-    }*/
+    }
 
     /*private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
@@ -159,16 +159,33 @@ public class AILauncher {
         return gameLogic.calculateLineWithMostPoints()*gameLogic.availableSpace().size() + gameLogic.calculateLineWithMostPoints();
     }*/
 
-    private int eval(State state) {
-        gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
-        return gameLogic.calculateOuterLineWithMostPoints() + gameLogic.availableSpace().size();
-    }
+    /*private int eval(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return gameLogic.calculatePointsOnOuterLines()*gameLogic.availableSpace().size() + gameLogic.calculatePointsOnOuterLines();
+    }*/
+
+    /*private int eval(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return evalWeight(state);
+    }*/
 
     private int evalWeight(State state) {
         int[] weigths = {-40, -38, -35, -30,
                 -5, -15, -18, -20,
                 5, 7, 10, 20,
                 110, 70, 60, 55};
+        int sum = 0;
+        for (int i = 0; i < state.getCells().length; i++) {
+            sum += weigths[i]*state.getCells()[i].getNumber();
+        }
+        return sum;
+    }
+
+    private int evalWeight2(State state) {
+        int[] weigths = {20, 15, 10, 5,
+                        30, 20, 15, 10,
+                        40, 30, 20, 15,
+                        60, 40, 30, 20};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
             sum += weigths[i]*state.getCells()[i].getNumber();
@@ -186,7 +203,7 @@ public class AILauncher {
     private int expectiminimax(State s, int height) {
 
         if (cutoffTest(s, height)) {
-            return newEval();
+            return eval(s);
         }
 
         if (player(height)) { // if it's our turn
