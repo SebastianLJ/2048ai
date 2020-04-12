@@ -11,7 +11,7 @@ public class AILauncher {
 
     private Game gameLogic;
     private Cell emptyCell;
-    private final int DEPTH = 6;
+    private final int DEPTH = 5;
 
     public AILauncher() {
         gameLogic = new Game();
@@ -19,7 +19,7 @@ public class AILauncher {
 
     private void helper(State s) {
         //int optimal = expectiminimax(s, 0);
-        int optimal = hMiniMax(s, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        int optimal = expectiminimax(s, 0);
         System.out.println("Best Action is to go " + s.getMove() + " and the optimal value is " + optimal);
     }
 
@@ -160,7 +160,7 @@ public class AILauncher {
 
     private int eval(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return gameLogic.calculatePointsOnOuterLines()*gameLogic.availableSpace().size() + gameLogic.calculatePointsOnOuterLines() - gameLogic.nonMonotonicPenalty()*10;
+        return gameLogic.calculatePointsOnOuterLines()*gameLogic.availableSpace().size() + gameLogic.calculatePointsOnOuterLines() + gameLogic.nonMonotonicPenalty()*2;
     }
 
     /*private int eval(State state) {
@@ -200,7 +200,6 @@ public class AILauncher {
     }
 
     private int expectiminimax(State s, int height) {
-
         if (cutoffTest(s, height)) {
             return eval(s);
         }
@@ -216,36 +215,30 @@ public class AILauncher {
                     alpha = searchValue;
                     s.setMove(action);
                 }
-
             }
             return alpha;
         } else { // if it's the game's turn
             int alpha = 0;
             int searchvalue = 0;
             List<String> actions = actions(s, height);
+            for (int i = 0; i < actions.size(); i+=2) {
 
-            for (String action : actions) {
                 State resultingState;
-                resultingState = result(s, action);
-                Cell emptyCell = gameLogic.chooseCelVal(4);
+                resultingState = result(s, actions.get(i));
+                searchvalue = expectiminimax(resultingState, height + 1);
+                if (searchvalue != Integer.MIN_VALUE) { //if we're inserting a 2 as tile.
+                    alpha += 0.9 * searchvalue;
+                }
+                resultingState = result(s, actions.get(i + 1));
                 searchvalue = expectiminimax(resultingState, height + 1);
                 if (searchvalue != Integer.MIN_VALUE) {
                     alpha += 0.1 * searchvalue;
-                    s.setMove(action);
                 }
-                emptyCell.setNumber(2); //and remove the value 4 u just inserted above.
-                searchvalue = expectiminimax(resultingState, height + 1);
-                if (searchvalue != Integer.MIN_VALUE) {
-                    alpha += 0.9 * searchvalue;
-                    s.setMove(action);
-                }
+
             }
-            return alpha / 16;
-
+            return  gameLogic.availableSpace().size() == 0 ? alpha/Integer.MIN_VALUE : alpha / gameLogic.availableSpace().size();
         }
-
     }
-
     private int newEval() { //Noah's attempt at eval function. It isn't very good - yet.
         int[] directionScores = new int[4];
         //UP/DOWN
