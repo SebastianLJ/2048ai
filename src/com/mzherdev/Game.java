@@ -19,6 +19,8 @@ public class Game extends javafx.scene.canvas.Canvas {
     boolean lose = false;
     int score = 0;
     int totalMoves = 0;
+    long startTime = System.currentTimeMillis();
+
 
 
 
@@ -330,5 +332,16 @@ public class Game extends javafx.scene.canvas.Canvas {
             }
         }
         return Integer.max(maxRow, Integer.max(cols[0], cols[3]));
+    }
+
+    public long getTime() {
+        return System.currentTimeMillis() - startTime;
+    }
+
+    public String getResults() {
+        String s = "score: " + score +
+                "\n" + "moves: " + totalMoves +
+                "\n" + "moves/second: " + totalMoves/getTime()*1000 + "\n";
+        return s;
     }
 }

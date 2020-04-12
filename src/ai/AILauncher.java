@@ -57,9 +57,9 @@ public class AILauncher {
             for (String action : actions) {
                 resultingState = result(s, action);
                 searchValue = hMiniMax(resultingState, d + 1, alpha, beta);
-                if (searchValue < min) {
+                /*if (searchValue < min) {
                     s.setMove(action);
-                }
+                }*/
                 min = Integer.min(min, searchValue);
                 beta = Integer.min(beta, min);
                 if (beta <= alpha) {
