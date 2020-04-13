@@ -22,7 +22,7 @@ public class Main extends Application {
 
     private static final int CELL_SIZE = 64;
     private final boolean[] moved = new boolean[1];
-    private final int SLEEP_TIMER = 10;
+    private final int SLEEP_TIMER = 50;
 
 
     public static void main(String[] args) {
@@ -31,6 +31,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage myStage) {
+
+
 
         myStage.setTitle("Game 2048");
 
@@ -107,13 +109,14 @@ public class Main extends Application {
 
                         if (value != 0)
                             gc.fillText(s, xOffset + CELL_SIZE / 2, yOffset + CELL_SIZE / 2 - 2);
-                        /*if(game.win || game.lose) {
+                        if(game.win || game.lose) {
                             gc.setFill(Color.rgb(255, 255, 255));
                             gc.fillRect(0, 0, game.getWidth(), game.getHeight());
                             gc.setFill(Color.rgb(78, 139, 202));
                             gc.setFont(Font.font("Verdana", FontWeight.BOLD, 40));
                             if(game.win){
                                 gc.fillText("You win!", 95, 150);
+                                game.gamesWon++;
                             }
                             if(game.lose) {
                                 gc.fillText("Game over!", 150, 130);
@@ -123,10 +126,13 @@ public class Main extends Application {
                                 gc.setFont(Font.font("Verdana", FontWeight.LIGHT, 16));
                                 gc.setFill(Color.rgb(128, 128, 128));
                                 gc.fillText("Press ESC to play again", 110, 270);
+                                //game.gamesPlayed++;
+                                //game.totalScore += game.score;
                                 System.out.println(game.getResults());
-                                //this.stop();
+                                //System.out.println(game.getAvgResults());
+                                //game.resetGame();
                             }
-                        }*/
+                        }
                         gc.setFont(Font.font("Verdana", FontWeight.LIGHT, 18));
                         gc.fillText("Score: " + game.score, 200, 350);
                     }

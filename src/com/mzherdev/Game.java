@@ -1,10 +1,5 @@
 package com.mzherdev;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -20,8 +15,12 @@ public class Game extends javafx.scene.canvas.Canvas {
     boolean win = false;
     boolean lose = false;
     int score = 0;
-    int totalMoves = 0;
+    int moves = 0;
     long startTime = System.currentTimeMillis();
+
+    int gamesPlayed = 0;
+    int gamesWon = 0;
+    int totalScore = 0;
 
 
 
@@ -219,7 +218,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public boolean left() {
-        totalMoves++;
+        moves++;
         boolean moved = false;
         for(int i = 0; i < 4; i++) {
             Cell[] line = getLine(i);
@@ -233,7 +232,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public boolean right() {
-        totalMoves++;
+        moves++;
         cells = rotate(180);
         boolean moved = left();
         cells = rotate(180);
@@ -241,7 +240,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public boolean up() {
-        totalMoves++;
+        moves++;
         cells = rotate(270);
         boolean moved = left();
         cells = rotate(90);
@@ -249,7 +248,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public boolean down() {
-        totalMoves++;
+        moves++;
         cells = rotate(90);
         boolean moved = left();
         cells = rotate(270);
@@ -435,10 +434,19 @@ public class Game extends javafx.scene.canvas.Canvas {
     }
 
     public String getResults() {
-        String s = "score: " + score +
-                "\n" + "moves: " + totalMoves +
-                "\n" + "time: " + getTime()/1000 +
-                "\n" + "moves/second: " + totalMoves/(getTime()/1000) + "\n";
+        String s = "Win: " + win +
+                "\n" + "score: " + score +
+                "\n" + "moves: " + moves +
+                "\n" + "moves/second: " + moves /(getTime()/1000) + "\n";
+        return s;
+    }
+
+    public String getAvgResults() {
+        String s = "Games played: " + gamesPlayed +
+                "\n" + "Win%: " + ((double) gamesWon /(double) gamesPlayed) * 100 + "%" +
+                "\n" + "Avg. Score: " + totalScore/gamesPlayed +
+                "\n" + "Avg. Moves: " + moves/gamesPlayed +
+                "\n" + "Avg. moves/second: " + moves /(getTime()/1000) + "\n";
         return s;
     }
 

@@ -26,7 +26,7 @@ public class AILauncher {
     @SuppressWarnings("Duplicates")
     private int hMiniMax(State s, int d, int alpha, int beta) {
         if (cutoffTest(s, d)) {
-            return evalOuterLinesFreeSpacesMonotonicityMergeability(s);
+            return evalOFSMM(s);
         }
 
         List<String> actions = actions(s, d);
@@ -145,7 +145,7 @@ public class AILauncher {
         return gameLogic.calculatePointsOnOuterLines() + 30*gameLogic.availableSpace().size();
     }
 
-    private int evalOuterLinesFreeSpacesMonotonicityMergeability(State state) {
+    private int evalOFSMM(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
         return gameLogic.calculatePointsOnOuterLines() + 200*gameLogic.availableSpace().size() - gameLogic.nonMonotonicPenalty() + gameLogic.mergeability();
     }
@@ -178,17 +178,17 @@ public class AILauncher {
         Cell[] cells = Arrays.copyOf(game.getCells(), 16);
         State s0 = new State(cells, "");
 
-        //int optimal = expectiminimax(s, 0);
+        //int optimal = expectiminimax(s0, 0);
         int optimal = hMiniMax(s0, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
-        System.out.println("Best Action is to go " + s0.getMove() + " and the optimal value is " + optimal);
+        //System.out.println("Best Action is to go " + s0.getMove() + " and the optimal value is " + optimal);
 
         return s0.getMove();
     }
 
     private int expectiminimax(State s, int height) {
         if (cutoffTest(s, height)) {
-            return evalOuterLinesFreeSpacesMonotonicityMergeability(s);
+            return evalWeight(s);
         }
 
         if (player(height)) { // if it's our turn
