@@ -25,14 +25,11 @@ public class AILauncher {
 
     @SuppressWarnings("Duplicates")
     private int hMiniMax(State s, int d, int alpha, int beta) {
-        //System.out.println("current state: " + Arrays.toString(s.getCells()));
         if (cutoffTest(s, d)) {
-            return evalWeight(s);
+            return evalOuterLinesFreeSpacesMonotonicityMergeability(s);
         }
 
         List<String> actions = actions(s, d);
-
-        //System.out.println("depth=" + d + " actions: " + Arrays.toString(actions));
 
         int searchValue;
         State resultingState;
@@ -50,35 +47,20 @@ public class AILauncher {
                     break;
                 }
             }
-            //System.out.println("Maximizer: " + max);
             return max;
         } else {
             int min = Integer.MAX_VALUE;
             for (String action : actions) {
                 resultingState = result(s, action);
                 searchValue = hMiniMax(resultingState, d + 1, alpha, beta);
-                /*if (searchValue < min) {
-                    s.setMove(action);
-                }*/
                 min = Integer.min(min, searchValue);
                 beta = Integer.min(beta, min);
                 if (beta <= alpha) {
                     break;
                 }
             }
-            //System.out.println("Minimizer: " + min);
             return min;
         }
-    }
-
-    /**
-     * Find out who's turn it is in a given state.
-     *
-     * @param state the current game state containing (game, move)
-     * @return 0 player, 1 nature
-     */
-    private boolean player(State state) {
-        return state.getMove() == null;
     }
 
     private boolean player(int depth) {
@@ -143,30 +125,30 @@ public class AILauncher {
         return /*gameLogic.winningState() ||*/ d > DEPTH;
     }
 
-    /*private int eval(State state) {
+    private int evalScore(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return gameLogic.availableSpace().size();
-    }*/
-
-    /*private int eval(State state) {
-        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return gameLogic.calculateLineWithMostPoints();
-    }*/
-
-    /*private int eval(State state) {
-        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return gameLogic.calculateLineWithMostPoints()*gameLogic.availableSpace().size() + gameLogic.calculateLineWithMostPoints();
-    }*/
-
-    private int eval(State state) {
-        gameLogic.setCells(Arrays.copyOf(state.getCells(), 16));
-        return gameLogic.calculatePointsOnOuterLines() * gameLogic.availableSpace().size() + gameLogic.calculatePointsOnOuterLines() - gameLogic.nonMonotonicPenalty() * 10;
+        return gameLogic.getScore();
     }
 
-    /*private int eval(State state) {
+    private int evalFreeSpaces(State state) {
         gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
-        return evalWeight(state);
-    }*/
+        return gameLogic.availableSpace().size();
+    }
+
+    private int evalScoreFreeSpaces(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return (int) Math.sqrt(gameLogic.getScore())*gameLogic.availableSpace().size();
+    }
+
+    private int evalOuterLinesFreeSpaces(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return gameLogic.calculatePointsOnOuterLines() + 30*gameLogic.availableSpace().size();
+    }
+
+    private int evalOuterLinesFreeSpacesMonotonicityMergeability(State state) {
+        gameLogic.setCells(Arrays.copyOf(state.getCells(),16));
+        return gameLogic.calculatePointsOnOuterLines() + 200*gameLogic.availableSpace().size() - gameLogic.nonMonotonicPenalty() + gameLogic.mergeability();
+    }
 
     private int evalWeight(State state) {
         int[] weights = {-40, -38, -35, -30,
@@ -195,13 +177,18 @@ public class AILauncher {
     public String getNextMove(Game game) {
         Cell[] cells = Arrays.copyOf(game.getCells(), 16);
         State s0 = new State(cells, "");
-        helper(s0);
+
+        //int optimal = expectiminimax(s, 0);
+        int optimal = hMiniMax(s0, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+
+        System.out.println("Best Action is to go " + s0.getMove() + " and the optimal value is " + optimal);
+
         return s0.getMove();
     }
 
     private int expectiminimax(State s, int height) {
         if (cutoffTest(s, height)) {
-            return evalWeight(s);
+            return evalOuterLinesFreeSpacesMonotonicityMergeability(s);
         }
 
         if (player(height)) { // if it's our turn

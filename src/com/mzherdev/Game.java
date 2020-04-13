@@ -329,7 +329,6 @@ public class Game extends javafx.scene.canvas.Canvas {
             }
         }
         return rows[0] + rows[3] + cols[0] + cols[3];
-        //return Integer.max(rows[0], Integer.max(rows[3], Integer.max(cols[0], cols[3])));
     }
 
     public int nonMonotonicPenalty() {
@@ -443,5 +442,30 @@ public class Game extends javafx.scene.canvas.Canvas {
         return s;
     }
 
+    public int mergeability() {
+        int mergeability = 0;
 
+        int cellNumber;
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                cellNumber = cellAt(x,y).getNumber();
+                if (cellNumber == 0) {
+                    continue;
+                }
+                try {
+                    if (cellNumber == cellAt(x - 1, y).getNumber()) mergeability++;
+                } catch (Exception ignored){}
+                try {
+                    if (cellNumber == cellAt(x + 1, y).getNumber()) mergeability++;
+                } catch (Exception ignored){}
+                try {
+                    if (cellNumber == cellAt(x,y-1).getNumber()) mergeability++;
+                } catch (Exception ignored){}
+                try {
+                    if (cellNumber == cellAt(x,y+1).getNumber()) mergeability++;
+                } catch (Exception ignored){}
+            }
+        }
+        return mergeability;
+    }
 }
