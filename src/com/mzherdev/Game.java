@@ -442,4 +442,6 @@ public class Game extends javafx.scene.canvas.Canvas {
                 "\n" + "moves/second: " + totalMoves/(getTime()/1000) + "\n";
         return s;
     }
+
+
 }

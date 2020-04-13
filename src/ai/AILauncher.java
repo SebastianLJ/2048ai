@@ -169,25 +169,25 @@ public class AILauncher {
     }*/
 
     private int evalWeight(State state) {
-        int[] weigths = {-40, -38, -35, -30,
+        int[] weights = {-40, -38, -35, -30,
                 -5, -15, -18, -20,
                 5, 7, 10, 20,
                 90, 70, 60, 55};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
-            sum += weigths[i] * state.getCells()[i].getNumber();
+            sum += weights[i] * state.getCells()[i].getNumber();
         }
         return sum;
     }
 
     private int evalWeight2(State state) {
-        int[] weigths = {20, 15, 10, 5,
+        int[] weights = {20, 15, 10, 5,
                 30, 20, 15, 10,
                 40, 30, 20, 15,
                 60, 40, 30, 20};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
-            sum += weigths[i] * state.getCells()[i].getNumber();
+            sum += weights[i] * state.getCells()[i].getNumber();
         }
         return sum;
     }
@@ -201,7 +201,7 @@ public class AILauncher {
 
     private int expectiminimax(State s, int height) {
         if (cutoffTest(s, height)) {
-            return eval(s);
+            return evalWeight(s);
         }
 
         if (player(height)) { // if it's our turn
