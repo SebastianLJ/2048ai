@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74376c4d-788c-4465-ba6a-b6e1e3d9d436" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2048ai.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2048ai.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ai/AILauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/AILauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mzherdev/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mzherdev/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583838119503</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed a bunch of mistakes in expectiminimax function.&#10;&#10;--Disabled game over screen to check if no move was available">
+      <created>1586728566936</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586728566936</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,7 +133,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Revert &quot;&quot;Optimized imports&quot;&quot;&#10;&#10;This reverts commit 9717a3fe2b9bc0a4bdc5af215567dc8c0ec4f89a." />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;&quot;Optimized imports&quot;&quot;&#10;&#10;This reverts commit 9717a3fe2b9bc0a4bdc5af215567dc8c0ec4f89a." />
+    <MESSAGE value="Fixed a bunch of mistakes in expectiminimax function.&#10;&#10;--Disabled game over screen to check if no move was available" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a bunch of mistakes in expectiminimax function.&#10;&#10;--Disabled game over screen to check if no move was available" />
   </component>
   <component name="WindowStateProjectService">
     <state x="677" y="178" key="#Main" timestamp="1586684573619">
@@ -146,56 +155,56 @@
     </state>
     <state x="569" y="357" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1440.900@0.0.1440.900" timestamp="1583838016133" />
     <state x="759" y="413" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586700017595" />
-    <state x="396" y="32" key="CommitChangelistDialog2" timestamp="1586610720070">
+    <state x="396" y="32" key="CommitChangelistDialog2" timestamp="1586728565260">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="297" y="27" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1583838119369" />
-    <state x="396" y="32" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1586610720070" />
+    <state x="396" y="32" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1586728565260" />
     <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1586700051264">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586700051264" />
     <state x="740" y="281" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1585507586208" />
-    <state width="1877" height="175" key="GridCell.Tab.0.bottom" timestamp="1586700217549">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="276" key="GridCell.Tab.0.bottom" timestamp="1586729008849">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583928091649" />
     <state width="1877" height="175" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586700217549" />
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1586208812849" />
-    <state width="1877" height="175" key="GridCell.Tab.0.center" timestamp="1586700217549">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1586729008849" />
+    <state width="1877" height="276" key="GridCell.Tab.0.center" timestamp="1586729008849">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583928091648" />
     <state width="1877" height="175" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586700217549" />
-    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1586208812849" />
-    <state width="1877" height="175" key="GridCell.Tab.0.left" timestamp="1586700217548">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="276" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1586729008849" />
+    <state width="1877" height="276" key="GridCell.Tab.0.left" timestamp="1586729008849">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583928091648" />
     <state width="1877" height="175" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586700217548" />
-    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1586208812849" />
-    <state width="1877" height="175" key="GridCell.Tab.0.right" timestamp="1586700217549">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="276" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1586729008849" />
+    <state width="1877" height="276" key="GridCell.Tab.0.right" timestamp="1586729008849">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583928091649" />
     <state width="1877" height="175" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586700217549" />
-    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1586208812849" />
-    <state width="1877" height="150" key="GridCell.Tab.1.bottom" timestamp="1586187438558">
+    <state width="1877" height="276" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1586729008849" />
+    <state width="1877" height="148" key="GridCell.Tab.1.bottom" timestamp="1586727239951">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1586187438558" />
-    <state width="1877" height="150" key="GridCell.Tab.1.center" timestamp="1586187438558">
+    <state width="1877" height="148" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1586727239951" />
+    <state width="1877" height="148" key="GridCell.Tab.1.center" timestamp="1586727239951">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1586187438558" />
-    <state width="1877" height="150" key="GridCell.Tab.1.left" timestamp="1586187438558">
+    <state width="1877" height="148" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1586727239951" />
+    <state width="1877" height="148" key="GridCell.Tab.1.left" timestamp="1586727239951">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1586187438558" />
-    <state width="1877" height="150" key="GridCell.Tab.1.right" timestamp="1586187438558">
+    <state width="1877" height="148" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1586727239951" />
+    <state width="1877" height="148" key="GridCell.Tab.1.right" timestamp="1586727239951">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1586187438558" />
+    <state width="1877" height="148" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1586727239951" />
     <state x="184" y="89" key="MergeDialog" timestamp="1586696400650">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -220,15 +229,15 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="656" y="350" key="com.intellij.ide.util.TipDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1586610443152" />
-    <state x="769" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586697840680">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="769" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586697840680" />
-    <state x="769" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1586610670405" />
-    <state x="656" y="257" width="607" height="536" key="find.popup" timestamp="1586113092727">
+    <state x="769" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586730459256">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="656" y="257" width="607" height="536" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1586113092727" />
+    <state x="769" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586697840680" />
+    <state x="769" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1586730459256" />
+    <state x="656" y="257" width="607" height="536" key="find.popup" timestamp="1586722071958">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="656" y="257" width="607" height="536" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1586722071958" />
     <state x="761" y="316" key="git4idea.merge.GitMergeDialog" timestamp="1586610528102">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -237,9 +246,19 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="694" y="316" key="git4idea.merge.GitPullDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1586610541779" />
-    <state width="300" height="86" key="javadoc.popup.new" timestamp="1586203116495">
+    <state width="300" height="86" key="javadoc.popup.new" timestamp="1586727861190">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="300" height="86" key="javadoc.popup.new/0.0.1920.1050@0.0.1920.1050" timestamp="1586203116495" />
+    <state width="300" height="86" key="javadoc.popup.new/0.0.1920.1050@0.0.1920.1050" timestamp="1586727861190" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="gameLogic" language="JAVA" />
+        <watch expression="s" />
+        <watch expression="s.cells" />
+        <watch expression="gameLogic" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

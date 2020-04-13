@@ -156,7 +156,9 @@ public class Main extends Application {
         String nextMove = ai.getNextMove(game);
 
         if (!game.win && !game.canMove()) {
+/*
             game.lose = true;
+*/
         }
 
         if (!game.win && !game.lose) {
