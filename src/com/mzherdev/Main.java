@@ -22,7 +22,7 @@ public class Main extends Application {
 
     private static final int CELL_SIZE = 64;
     private final boolean[] moved = new boolean[1];
-    private final int SLEEP_TIMER = 80;
+    private final int SLEEP_TIMER = 10;
 
 
     public static void main(String[] args) {

@@ -188,9 +188,9 @@ public class Game extends javafx.scene.canvas.Canvas {
             if (i < 3 && oldLine[i].number == oldLine[i+1].number) {
                 num *= 2;
                 score += num;
-                /*if ( num == 2048) {
+                if ( num == 2048) {
                     win = true;
-                }*/
+                }
                 i++;
             }
             list.add(new Cell(num));
@@ -335,6 +335,7 @@ public class Game extends javafx.scene.canvas.Canvas {
     public int nonMonotonicPenalty() {
         return nonMonotonicCols() + nonMonotonicRows();
     }
+
 
     private int nonMonotonicCols() {
         int[] weightOfColumns = new int[4];

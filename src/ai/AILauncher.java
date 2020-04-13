@@ -20,14 +20,14 @@ public class AILauncher {
     private void helper(State s) {
         //int optimal = expectiminimax(s, 0);
         int optimal = hMiniMax(s, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        System.out.println("Best Action is to go " + s.getMove() + " and the optimal value is " + optimal);
+        //System.out.println("Best Action is to go " + s.getMove() + " and the optimal value is " + optimal);
     }
 
     @SuppressWarnings("Duplicates")
     private int hMiniMax(State s, int d, int alpha, int beta) {
         //System.out.println("current state: " + Arrays.toString(s.getCells()));
         if (cutoffTest(s, d)) {
-            return eval(s);
+            return evalWeight(s);
         }
 
         List<String> actions = actions(s, d);
@@ -172,7 +172,7 @@ public class AILauncher {
         int[] weigths = {-40, -38, -35, -30,
                 -5, -15, -18, -20,
                 5, 7, 10, 20,
-                110, 70, 60, 55};
+                90, 70, 60, 55};
         int sum = 0;
         for (int i = 0; i < state.getCells().length; i++) {
             sum += weigths[i]*state.getCells()[i].getNumber();
