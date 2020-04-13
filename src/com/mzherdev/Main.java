@@ -75,7 +75,6 @@ public class Main extends Application {
                 }
             }
             game.relocate(330, 390);
-            game.nonMonotonicPenalty();
         });
 
         rootNode.getChildren().add(game);
@@ -108,7 +107,7 @@ public class Main extends Application {
 
                         if (value != 0)
                             gc.fillText(s, xOffset + CELL_SIZE / 2, yOffset + CELL_SIZE / 2 - 2);
-                        if(game.win || game.lose) {
+                        /*if(game.win || game.lose) {
                             gc.setFill(Color.rgb(255, 255, 255));
                             gc.fillRect(0, 0, game.getWidth(), game.getHeight());
                             gc.setFill(Color.rgb(78, 139, 202));
@@ -125,9 +124,9 @@ public class Main extends Application {
                                 gc.setFill(Color.rgb(128, 128, 128));
                                 gc.fillText("Press ESC to play again", 110, 270);
                                 System.out.println(game.getResults());
-                                this.stop();
+                                //this.stop();
                             }
-                        }
+                        }*/
                         gc.setFont(Font.font("Verdana", FontWeight.LIGHT, 18));
                         gc.fillText("Score: " + game.score, 200, 350);
                     }
